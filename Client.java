@@ -23,7 +23,7 @@ public class Client {
 		int radint;
 		while ((radint = rad.nextInt(1000)) % 2 != 0) {
 
-		}
+		}//确定客户端编号，如果只有一个客户端不需要修改，如果多个客户端对应一个A记录实现负载均衡的话，需要修改=后面对应的1位0-9之间的一个数。
 		String sendSrcStr = "Client" + radint + "/NowTimeIs" + df.format(day);
 		String key = "keyvlue";
 		String iv = "nicaicaishisha!!";
