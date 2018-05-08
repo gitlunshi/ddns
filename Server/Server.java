@@ -61,8 +61,8 @@ public class Server {
 	            sb.append(temp);
 	         }
            byte[] reciverByte=AESCrptography.toBytes(sb.toString());
-           String key="luaizhuo521";  
-	      String iv="nicaicaishisha!!"; 
+           String key="keyvlue";  //加密秘钥
+	      String iv="nicaicaishisha!!"; //加密向量
            System.out.println(new String(AESCrptography.AES_CBC_Decrypt(reciverByte, key.getBytes(), iv.getBytes()))+socket.getInetAddress()); //打印从客户端就收到的字符串
 	      String reciverStr = new String(AESCrptography.AES_CBC_Decrypt(reciverByte, key.getBytes(), iv.getBytes()));
 		 int clientNum = Integer.parseInt(reciverStr.split("/")[0].replaceAll("Client", ""));
