@@ -54,6 +54,7 @@ public class Server {
 	      * @throws Exception
 	       */
 	      private void handleSocket() throws Exception {
+			 String filePath=Server.class.getResource("").getFile();
 	         BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 	         StringBuilder sb = new StringBuilder();
 	         String temp;
@@ -76,18 +77,18 @@ public class Server {
 		 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss"); 
 		 String log=clientName+" : "+df.format(day)+" : src="+srcIp+" : dst="+dstIp+"\n";
                  try {
-	            BufferedWriter bw = new BufferedWriter(new FileWriter("/root/"+clientName,true));
+	            BufferedWriter bw = new BufferedWriter(new FileWriter(filePath+clientName,true));
 	            bw.write(log);//写收到的心跳包日志
 	            bw.close();
 	         } catch (IOException e1) {
 	             e1.printStackTrace();
 	         }
 		 if (!dstIp.equals(srcIp)) {
-		     String cmd = "/root/test " + srcIp + " " + dstIp;//要执行的脚本的路径，"/root/test "可以更改为自己的地址
+		     String cmd = filePath+"modifydns " + srcIp + " " + dstIp;//要执行的脚本的路径
 		    // System.out.println(cmd);
 		     executeLinuxCmd2(cmd);//执行更改dns的脚本
                      try {
-                          BufferedWriter bw = new BufferedWriter(new FileWriter("/root/gg"+clientName,true));
+                          BufferedWriter bw = new BufferedWriter(new FileWriter(filePath+"gg"+clientName,true));
                           bw.write(log); //写收到的并进行了更改的心跳包日志
                           bw.close();
                         } catch (IOException e1) {

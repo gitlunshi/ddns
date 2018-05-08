@@ -1,0 +1,8 @@
+#!/bin/bash
+nsupdate << EOF
+server 127.0.0.1
+update del www.test.com 3 IN A $1
+update add www.test.com 3 IN A $2
+send
+EOF
+#
